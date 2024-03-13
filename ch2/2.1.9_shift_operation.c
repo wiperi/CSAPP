@@ -1,5 +1,5 @@
 //
-// DPST1091 Lab 10 Exercise - Shift Operation in C
+// Name: Shift Operation in C
 // 
 // Introduction:
 // This program shows the property of shift operation in C.
@@ -14,6 +14,9 @@
 //
 #include <stdio.h>
 
+/**
+ * @brief Print the binary representation of an integer.
+*/
 void int_to_binary(int x) {
     int i;
     for (i = 0; i < 32; i++) {
@@ -23,6 +26,8 @@ void int_to_binary(int x) {
 }
 
 int main(int argc, char *argv[]) {
+
+    // Right shift
     printf("In C, right shift is arithmetic.\n");
     int a = 0x80000000;
     printf("a:\n");
@@ -32,6 +37,7 @@ int main(int argc, char *argv[]) {
 
     printf("\n");
 
+    // Over size shifting 
     printf("Over size shifting. If shift too far, the shift distance will be mod by sizeof(data structure)\n");
     a = 0x1;
     printf("a:\n");
