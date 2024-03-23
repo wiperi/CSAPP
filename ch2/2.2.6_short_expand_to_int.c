@@ -21,7 +21,7 @@ void show_binary(byte_pointer start, size_t len) {
 
 int main(int argc, char* argv[]) {
 
-    // signed expansion
+    // signed expanded to int
     short s = 0xaaff;
     int i = s;
     printf("s: %d\n", s);

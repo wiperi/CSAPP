@@ -4,7 +4,7 @@
 
 void decimal_to_binary_integer_part(int decimal) {
     // an array to store binary result
-    int* binary = (int*)malloc(64 * sizeof(int));
+    int* binary = (int*) malloc(64 * sizeof(int));
 
     int i = 0;
     while (decimal > 0) {
@@ -34,7 +34,7 @@ void decimal_to_binary_fraction_part(double decimal) {
 }
 
 void decimal_to_binary(double decimal) {
-    int integer_part = (int)decimal;
+    int integer_part = (int) decimal;
     decimal_to_binary_integer_part(integer_part);
     decimal_to_binary_fraction_part(decimal - integer_part);
     printf("\n");

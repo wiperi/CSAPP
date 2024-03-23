@@ -19,6 +19,8 @@
  * 1. y = x ^ y
  * 2. x = x ^ (x ^ y) = y
  * 3. y = y ^ (x ^ y) = x
+ * 
+ * Noticed that this method doesn't have performance advantage.
  */
 void inplace_swap(int* x, int* y) {
     *y = *x ^ *y;

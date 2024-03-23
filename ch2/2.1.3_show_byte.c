@@ -1,17 +1,10 @@
-//
-// Show Bytes
-//
-// Introduction:
-// This program is to show the value of each byte in the memory of a variable.
-//
-// Reference
-//
-//
-// Authors:
-// Tianyang Chen (z5567323@unsw.edu.au)
-//
-// Written: 19/03/2024
-//
+/**
+ * Name:
+ * Show byte
+ * 
+ * Introduction:
+ * Show the byte representation of a data structure.
+ */
 #include <stdio.h>
 
 typedef unsigned char* byte_pointer;
