@@ -26,19 +26,16 @@ main:
     syscall 
     move    $t1,    $v0                                 # get t1
 
+
     sub     $t2,    $t1,        $t0                     # t2 = t1 - t0
     addi    $t2,    $t2,        1                       # t2 = t2 + 1
 
 
-
     add     $t3,    $t0,        $t1                     # t3 = t0 + t1
-    div     $t3,    $t3,        2                       # t3 = t3 / 2
 
-
-
-    mul     $t4,    $t2,        $t3                     # gaussian_sum(t4) = t2 * t3
-    li      $t7,    2                                   # t4 = t4 / 2
-    div     $t4,    $t4,        $t7                     # t4 = t4 / 2
+    # t4 as gaussian_sum
+    mul     $t4,    $t2,        $t3                     # t4 = t2 * t3
+    div     $t4,    $t4,        2                       # t4 = t4 / 2
 
 
     li      $v0,    4

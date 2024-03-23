@@ -19,19 +19,3 @@ int main(void) {
 
     return 0;
 }
-
-int simplified(void) {
-    int t0, t1;
-
-    printf("Enter first number: ");
-    scanf("%d", &t0);
-
-    printf("Enter second number: ");
-    scanf("%d", &t1);
-
-    int gaussian_sum = ((t1 - t0 + 1) * (t0 + t1)) / 2;
-
-    printf("The sum of all numbers between %d and %d (inclusive) is: %d\n", t0, t1, gaussian_sum);
-
-    return 0;
-}
