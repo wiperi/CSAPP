@@ -16,3 +16,17 @@ int main(void) {
 
     return 0;
 }
+
+int simplified() {
+    int number;
+    int i = 1;
+loop:
+    if (i > number)
+        goto end;
+    printf("%d", i);
+    printf("\n");
+    i++;
+    goto loop;
+end:
+    return;
+}
