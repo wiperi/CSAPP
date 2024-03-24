@@ -1,13 +1,21 @@
 #include <stdio.h>
 
-int main(int argc, char* argv[]) {
-    int i = 0;
-    int n = 0;
-loop:
-    if (i >= 5)
-        goto end;
+int main(void) {
+    int i, n;
+    if (i < 0) {
+        n = n - i;
+    } else {
+        n = n + i;
+    }
+}
+
+int simplified(int argc, char* argv[]) {
+    int i, n;
+    if (i >= 0)
+        goto else1;
+    n = n - i;
+    goto end1;
+else1:
     n = n + i;
-    i++;
-    goto loop;
-end:
+end1:
 }
