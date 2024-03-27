@@ -18,3 +18,26 @@ int main(void) {
 
     return 0;
 }
+
+int simplified(void) {
+    int number, i;
+
+    printf("Enter a number: ");
+    scanf("%d", &number);
+
+    i = 1;
+loop:
+    if (i >= number) goto end;
+
+    if (i % 7 == 0) goto print;
+    if (i % 11 == 0) goto print;
+    goto no_print;
+
+print:
+    printf("%d\n", i);
+    
+no_print:
+    i++;
+    goto loop;
+end:
+}
