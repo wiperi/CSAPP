@@ -32,6 +32,6 @@ def download_file(url, dest_folder):
     print(f"Download failed: {e}")
 
 # Example usage
-url = "https://cgi.cse.unsw.edu.au/~cs1521/23T3//topic/mips_data/code/print2d.s"
+url = "https://cgi.cse.unsw.edu.au/~cs1521/23T3//topic/mips_data/code/struct_array.s"
 dest_folder = "C:/Users/15617/Documents/92_MyGithub/CSAPP/MIPS_demo/data"  # Replace with your desired folder path
 download_file(url, dest_folder)
