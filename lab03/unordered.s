@@ -45,7 +45,8 @@ loop1_body:
 
 	mul $t2, $t0, $t4 	      # i * 4
 	addi $t2, $t2, numbers # numbers + i * 4
-	lw $t2, ($t2) # y = numbers[i]
+	sub $t2, $t2, 4 # numbers[i - 1]
+	lw $t2, ($t2) # y = numbers[i - 1]
 
 if1_con:
 	blt $t1, $t2, then1
