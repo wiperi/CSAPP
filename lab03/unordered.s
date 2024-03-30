@@ -36,14 +36,14 @@ loop1_init:
 	li $t3, 0 # $t3 = swapped = 0
 	li $t0, 1 # $t0 = i = 1
 loop1_con:
-	bge $t0, ARRAY_LEN, j loop1_end # while (i < ARRAY_LEN)
+	bge $t0, ARRAY_LEN, loop1_end # while (i < ARRAY_LEN)
 loop1_body:
 	mul $t0, 4 	      # i * 4
-	addi $t1, numbers # numbers + i * 4
+	addi $t1, $t1, numbers # numbers + i * 4
 	lw $t1, ($t1) # x = numbers[i]
 
 	mul $t0, 4 	      # i * 4
-	addi $t2, numbers # numbers + i * 4
+	addi $t2, $t2, numbers # numbers + i * 4
 	lw $t2, ($t2) # y = numbers[i]
 
 if1_con:
