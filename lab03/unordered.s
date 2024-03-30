@@ -38,11 +38,12 @@ loop1_init:
 loop1_con:
 	bge $t0, ARRAY_LEN, loop1_end # while (i < ARRAY_LEN)
 loop1_body:
-	mul $t0, 4 	      # i * 4
+	li $t4, 4
+	mul $t1, $t0, $t4 	      # i * 4
 	addi $t1, $t1, numbers # numbers + i * 4
 	lw $t1, ($t1) # x = numbers[i]
 
-	mul $t0, 4 	      # i * 4
+	mul $t2, $t0, $t4 	      # i * 4
 	addi $t2, $t2, numbers # numbers + i * 4
 	lw $t2, ($t2) # y = numbers[i]
 
