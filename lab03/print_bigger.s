@@ -10,6 +10,7 @@ main:
 	#  - $t1: temporary result
 	#  - $t2: temporary result
 	#  TODO: add your registers here
+	#  - $t3: final_number
 
 
 	# TODO: modify the code below to behave like
@@ -28,6 +29,8 @@ scan_loop__body:
 	add	$t2, $t2, $t1			#
 	sw	$v0, ($t2)			#   scanf("%d", &numbers[i]);
 
+	move $t3, $v0 # $t3 = final_number
+
 	addi	$t0, $t0, 1			#   i++;
 	j	scan_loop__cond			# }
 scan_loop__end:
@@ -39,9 +42,13 @@ print_loop__cond:
 
 print_loop__body:
 	mul	$t1, $t0, 4			#   calculate &numbers[i] == numbers + 4 * i
-	la	$t2, numbers			#
-	add	$t2, $t2, $t1			#
-	lw	$a0, ($t2)			#
+	la	$t2, numbers		#
+	add	$t2, $t2, $t1		#   $t2 = numbers + i * sizeof(int)
+	lw	$a0, ($t2)			#   $a0 = numbers[i]
+
+	bge $a0, $t3, then1 	# if (numbers[i] >= final) ...
+	j else1
+then1:
 	li	$v0, 1				#   syscall 1: print_int
 	syscall					#   printf("%d", numbers[i]);
 
@@ -49,6 +56,7 @@ print_loop__body:
 	li	$a0, '\n'			#
 	syscall					#   printf("%c", '\n');
 
+else1:
 	addi	$t0, $t0, 1			#   i++;
 	j	print_loop__cond		# }
 print_loop__end:
