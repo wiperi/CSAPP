@@ -3,8 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "C:\Users\15617\Documents\92_MyGithub\CSAPP\print_bit.h"
-
 int bcd(int bcd_value);
 
 int main(int argc, char* argv[]) {
