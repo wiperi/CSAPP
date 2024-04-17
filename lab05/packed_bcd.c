@@ -32,7 +32,7 @@ uint32_t packed_bcd(uint32_t packed_bcd_value) {
         int digit = packed_bcd_value % 16;
 
         res += digit * weight;
-        weight = weight *= 10;
+        weight *= 10;
 
         packed_bcd_value /= 16;
     }
