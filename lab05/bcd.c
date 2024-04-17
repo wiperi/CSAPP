@@ -1,11 +1,13 @@
-#include <stdio.h>
-#include <stdint.h>
-#include <stdlib.h>
 #include <assert.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "C:\Users\15617\Documents\92_MyGithub\CSAPP\print_bit.h"
 
 int bcd(int bcd_value);
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
 
     for (int arg = 1; arg < argc; arg++) {
         long l = strtol(argv[arg], NULL, 0);
@@ -24,5 +26,8 @@ int bcd(int bcd_value) {
 
     // PUT YOUR CODE HERE
 
-    return 0;
+    int ones = bcd_value & 0xF;
+    int tens = (bcd_value >> 8) & 0xF;
+
+    return 10 * tens + ones;
 }

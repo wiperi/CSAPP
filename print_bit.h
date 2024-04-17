@@ -30,4 +30,5 @@ void print_bits(uint64_t value, int how_many_bits) {
         int bit = get_nth_bit(value, i);
         printf("%d", bit);
     }
+    printf("\n");
 }
