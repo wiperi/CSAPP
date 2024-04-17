@@ -7,22 +7,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "C:\Users\15617\Documents\92_MyGithub\CSAPP\print_bit.h"
-
 #define N_BITS 16
 
 int16_t sixteen_in(char* bits);
 
 int main(int argc, char* argv[]) {
 
-    // for (int arg = 1; arg < argc; arg++) {
-    //     printf("%d\n", sixteen_in(argv[arg]));
-    // }
-
-    char input[17];
-    fgets(input, 17, stdin);
-
-    printf("%d\n", sixteen_in(input));
+    for (int arg = 1; arg < argc; arg++) {
+        printf("%d\n", sixteen_in(argv[arg]));
+    }
 
     return 0;
 }
@@ -32,7 +25,7 @@ int main(int argc, char* argv[]) {
 // return the corresponding signed 16 bit integer
 //
 int16_t sixteen_in(char* bits) {
-    int16_t res = 0xff;
+    int16_t res = 0;
 
     for (int i = 0; bits[i] != '\0'; i++) {
 
