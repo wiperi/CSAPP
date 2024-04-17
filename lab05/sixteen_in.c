@@ -1,11 +1,13 @@
 // Convert string of binary digits to 16-bit signed integer
 
 #include <assert.h>
+#include <math.h>
 #include <stdint.h>
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
-#include <math.h>
+#include <string.h>
+
+#include "C:\Users\15617\Documents\92_MyGithub\CSAPP\print_bit.h"
 
 #define N_BITS 16
 
@@ -19,7 +21,7 @@ int main(int argc, char* argv[]) {
 
     char input[17];
     fgets(input, 17, stdin);
-    
+
     printf("%d\n", sixteen_in(input));
 
     return 0;
@@ -30,12 +32,12 @@ int main(int argc, char* argv[]) {
 // return the corresponding signed 16 bit integer
 //
 int16_t sixteen_in(char* bits) {
-    int16_t res = 0;
+    int16_t res = 0xff;
 
-    for (int i = 0; i < 16; i++)
-    {
+    for (int i = 0; bits[i] != '\0'; i++) {
+
         if (bits[i] == '1') {
-            int16_t mask = 1 << i;
+            int16_t mask = 1 << (16 - i - 1);
             res = res | mask;
         } else {
             continue;
