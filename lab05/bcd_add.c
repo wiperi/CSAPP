@@ -57,12 +57,12 @@ big_bcd_t* bcd_add(big_bcd_t* x, big_bcd_t* y) {
     // [03, 04, 04] 444
 
     big_bcd_t* res = (big_bcd_t*) malloc(sizeof(big_bcd_t));
-    res->bcd = (unsigned char*) malloc(1024);
     if (x->n_bcd > y->n_bcd) {
         res->n_bcd = x->n_bcd;
     } else {
         res->n_bcd = y->n_bcd;
     }
+    res->bcd = (unsigned char*) malloc(res->n_bcd + 1);
 
     int i = 0;
     int carry = 0;
