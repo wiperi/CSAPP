@@ -23,6 +23,14 @@ big_bcd_t* bcd_from_string(char* string);
 big_bcd_t* expression(char*** tokens);
 big_bcd_t* term(char*** tokens);
 
+int max(int a, int b) {
+    if (a > b) {
+        return a;
+    } else {
+        return b;
+    }
+}
+
 int main(int argc, char* argv[]) {
     char** tokens = argv + 1;
 
@@ -46,7 +54,7 @@ big_bcd_t* bcd_add(big_bcd_t* x, big_bcd_t* y) {
 
     // malloc res
     big_bcd_t* res = (big_bcd_t*) malloc(sizeof(big_bcd_t));
-    res->n_bcd = __max(x->n_bcd, y->n_bcd);
+    res->n_bcd = max(x->n_bcd, y->n_bcd);
     res->bcd = (unsigned char*) malloc(res->n_bcd * sizeof(unsigned char));
 
     unsigned char sum = 0, carry = 0;
@@ -81,7 +89,7 @@ big_bcd_t* bcd_subtract(big_bcd_t* x, big_bcd_t* y) {
 
     // malloc res
     big_bcd_t* res = (big_bcd_t*) malloc(sizeof(big_bcd_t));
-    res->n_bcd = __max(x->n_bcd, y->n_bcd);
+    res->n_bcd = max(x->n_bcd, y->n_bcd);
     res->bcd = (unsigned char*) malloc(res->n_bcd * sizeof(unsigned char));
 
     int sum = 0, carry = 0;
@@ -115,7 +123,7 @@ big_bcd_t* bcd_multiply(big_bcd_t* x, big_bcd_t* y) {
 
     // malloc res
     big_bcd_t* res = (big_bcd_t*) malloc(sizeof(big_bcd_t));
-    res->n_bcd = __max(x->n_bcd, y->n_bcd);
+    res->n_bcd = max(x->n_bcd, y->n_bcd);
     res->bcd = (unsigned char*) malloc(res->n_bcd * sizeof(unsigned char));
 
     // malloc for number 1
