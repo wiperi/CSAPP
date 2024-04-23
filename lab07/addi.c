@@ -19,7 +19,7 @@ uint32_t addi(int t, int s, int i) {
     uint32_t res = 0;
 
     // build opcode
-    // res = 0b001000 << 26;
+    res = 0b001000 << 26;
     // print_bits(res, 32);
 
     // build source
