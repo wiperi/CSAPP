@@ -134,14 +134,27 @@ big_bcd_t* bcd_multiply(big_bcd_t* x, big_bcd_t* y) {
 
     if (x->n_bcd < y->n_bcd) {
         // x as iterator
-        // while (1) {
-        //     if (x->n_bcd == 0)
-        //     res = bcd_add(y, y);
-        // }
+        while (1) {
+            // x == 0, break;
+            if (x->n_bcd == 1 && x->bcd[0] == 0) break;
+            // x -= 1
+            bcd_subtract(x, one);
+            res = bcd_add(y, y);
+        }
     } else {
+        // y as iterator
+        while (1) {
+            // y == 0, break;
+            if (y->n_bcd == 1 && y->bcd[0] == 0) break;
+            // y -= 1
+            bcd_subtract(y, one);
+            res = bcd_add(x, x);
+        }
     }
 
-    return NULL;
+    bcd_free(one);
+
+    return res;
 }
 
 big_bcd_t* bcd_divide(big_bcd_t* x, big_bcd_t* y) {
