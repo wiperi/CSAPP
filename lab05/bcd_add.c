@@ -52,9 +52,9 @@ int main(int argc, char* argv[]) {
 big_bcd_t* bcd_add(big_bcd_t* x, big_bcd_t* y) {
 
     // PUT YOUR CODE HERE
-    // ['03', 02, 04] 423
-    // [01, 02]      21
-    // [03, 04, 04] 444
+    // [1, 2, 3]
+    // [3, 2, 1]
+    // [4, 4, 4]
 
     big_bcd_t* res = (big_bcd_t*) malloc(sizeof(big_bcd_t));
     if (x->n_bcd > y->n_bcd) {
@@ -73,8 +73,9 @@ big_bcd_t* bcd_add(big_bcd_t* x, big_bcd_t* y) {
             sum = y->bcd[i] + carry;
         } else if (i >= y->n_bcd) {
             sum = x->bcd[i] + carry;
-        } else
+        } else {
             sum = x->bcd[i] + y->bcd[i] + carry;
+        }
 
         carry = sum / 10;
         res->bcd[i] = sum % 10;
@@ -82,6 +83,7 @@ big_bcd_t* bcd_add(big_bcd_t* x, big_bcd_t* y) {
         i++;
     }
 
+    // extra carry case
     if (carry != 0) {
         res->n_bcd++;
         res->bcd[i] = carry;
