@@ -35,7 +35,7 @@ main:
 
     sll     $t3,    $t2,    24  # t2 << 24
     and     $t3,    $t0,    $t3 # & t0
-    srl     $t3,    $t3,    8   # >> 24
+    srl     $t3,    $t3,    24  # >> 24
     or      $t1,    $t1,    $t3 # |= t1
 
     move    $a0,    $t1         # printf("%d\n", x);
