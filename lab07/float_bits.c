@@ -48,7 +48,7 @@ int is_nan(float_components_t f) {
 int is_positive_infinity(float_components_t f) {
     // PUT YOUR CODE HERE
 
-    return f.exponent == EXPONENT_INF_NAN && f.fraction == 0;
+    return f.exponent == EXPONENT_INF_NAN && f.fraction == 0 && f.sign == 0;
 }
 
 // given the 3 components of a float
