@@ -17,20 +17,20 @@
 #define EXPONENT_OFFSET   127
 #define EXPONENT_INF_NAN  0xFF
 
-#define SIGN_MASK          0x80000000
-#define EXPONENT_MASK      0x7F800000
-#define FRACTION_MASK      0x007FFFFF
+#define SIGN_MASK          0x1
+#define EXPONENT_MASK      0xff
+#define FRACTION_MASK      0x7fffff
 
 // separate out the 3 components of a float
 float_components_t float_bits(uint32_t f) {
     // PUT YOUR CODE HERE
     float_components_t res = {};
 
-    res.sign = f & SIGN_MASK;
+    res.sign = f & SIGN_MASK << SIGN_BIT;
 
-    res.exponent = f & EXPONENT_MASK;
+    res.exponent = f & (EXPONENT_MASK << EXPONENT_LOW_BIT);
 
-    res.fraction = f & FRACTION_MASK;
+    res.fraction = f & (FRACTION_MASK << FRACTION_LOW_BIT);
 
     return res;
 }
