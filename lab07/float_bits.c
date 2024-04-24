@@ -56,7 +56,7 @@ int is_positive_infinity(float_components_t f) {
 int is_negative_infinity(float_components_t f) {
     // PUT YOUR CODE HERE
 
-    return f.exponent == EXPONENT_INF_NAN && f.fraction == 0 && f.sign == SIGN_MASK;
+    return f.exponent == EXPONENT_INF_NAN && f.fraction == 0 && f.sign == 1;
 }
 
 // given the 3 components of a float
