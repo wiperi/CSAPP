@@ -26,7 +26,7 @@ float_components_t float_bits(uint32_t f) {
     // PUT YOUR CODE HERE
     float_components_t res = {};
 
-    res.sign = f & SIGN_MASK << SIGN_BIT;
+    res.sign = f & (SIGN_MASK << SIGN_BIT);
 
     res.exponent = f & (EXPONENT_MASK << EXPONENT_LOW_BIT);
 
