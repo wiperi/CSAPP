@@ -1,34 +1,30 @@
 // Extract the 3 parts of a float using bit operations only
 
-#include <stdio.h>
-#include <stdint.h>
-#include <stdlib.h>
 #include <assert.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "floats.h"
 
-#define N_BITS             32
-#define SIGN_BIT           31
-#define EXPONENT_HIGH_BIT  30
-#define EXPONENT_LOW_BIT   23
-#define FRACTION_HIGH_BIT  22
-#define FRACTION_LOW_BIT    0
+#define N_BITS 32
+#define SIGN_BIT 31
+#define EXPONENT_HIGH_BIT 30
+#define EXPONENT_LOW_BIT 23
+#define FRACTION_HIGH_BIT 22
+#define FRACTION_LOW_BIT 0
 
-#define EXPONENT_OFFSET   127
-#define EXPONENT_INF_NAN  0xFF
-
-// #define SIGN_MASK          0x1
-// #define EXPONENT_MASK      0xff
-// #define FRACTION_MASK      0x7fffff
-
-uint32_t SIGN_MASK = 0x1;
-uint32_t EXPONENT_MASK = 0xff;
-uint32_t FRACTION_MASK = 0x7fffff;
+#define EXPONENT_OFFSET 127
+#define EXPONENT_INF_NAN 0xFF
 
 // separate out the 3 components of a float
 float_components_t float_bits(uint32_t f) {
     // PUT YOUR CODE HERE
     float_components_t res = {};
+
+    uint32_t SIGN_MASK = 0x1;
+    uint32_t EXPONENT_MASK = 0xff;
+    uint32_t FRACTION_MASK = 0x7fffff;
 
     res.sign = (f & (SIGN_MASK << SIGN_BIT)) >> SIGN_BIT;
 
@@ -71,7 +67,7 @@ int is_zero(float_components_t f) {
     return f.exponent == 0 && f.fraction == 0;
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     for (int arg = 1; arg < argc; arg++) {
         union overlay input;
 
