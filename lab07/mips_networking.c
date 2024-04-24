@@ -23,18 +23,18 @@ int main(void) {
 }
 
 int simplified() {
-    int32_t t0;
-    scanf("%d", &t0);
+    int32_t s0;
+    scanf("%d", &s0);
 
-    int32_t t1 = 0;
-    uint32_t t2 = BYTE_MASK;
+    int32_t s1 = 0;
+    uint32_t s2 = BYTE_MASK;
 
-    t1 |= (t0 & t2) << 24;
-    t1 |= (t0 & (t2 << 8)) << 8;
-    t1 |= (t0 & (t2 << 16)) >> 8;
-    t1 |= (t0 & (t2 << 24)) >> 24;
+    s1 |= (s0 & s2) << 24;
+    s1 |= (s0 & (s2 << 8)) << 8;
+    s1 |= (s0 & (s2 << 16)) >> 8;
+    s1 |= (s0 & (s2 << 24)) >> 24;
 
-    printf("%d\n", t1);
+    printf("%d\n", s1);
 
     return 0;
 }
