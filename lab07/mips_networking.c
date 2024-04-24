@@ -21,3 +21,20 @@ int main(void) {
 
     return 0;
 }
+
+int simplified() {
+    int32_t t0;
+    scanf("%d", &t0);
+
+    int32_t t1 = 0;
+    uint32_t t2 = BYTE_MASK;
+
+    t1 |= (t0 & t2) << 24;
+    t1 |= (t0 & (t2 << 8)) << 8;
+    t1 |= (t0 & (t2 << 16)) >> 8;
+    t1 |= (t0 & (t2 << 24)) >> 24;
+
+    printf("%d\n", t1);
+
+    return 0;
+}
