@@ -1,9 +1,9 @@
 // Multiply a float by 2048 using bit operations only
 
-#include <stdio.h>
-#include <stdint.h>
-#include <stdlib.h>
 #include <assert.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "floats.h"
 
@@ -99,7 +99,10 @@ uint32_t float_2048(uint32_t f) {
         if (fl.exponent + 11 < 256) {
             // fl.exp + 11 not overflow
             fl.exponent += 11;
+
+            // before building bitpattern it is important to first reset the previous pattern
             f &= ~(0xff << EXPONENT_LOW_BIT);
+            
             f |= (fl.exponent << EXPONENT_LOW_BIT);
             return f;
         } else {
@@ -116,7 +119,7 @@ uint32_t float_2048(uint32_t f) {
     return 42;
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     for (int arg = 1; arg < argc; arg++) {
         union overlay input, result;
 

@@ -32,19 +32,19 @@ def download_file(url, dest_folder):
     except requests.exceptions.RequestException as e:
         print(f"Download failed: {e}")
 
+if __name__ == "__main__":
+    # Example usage
+    url = (
+        "https://cgi.cse.unsw.edu.au/~cs1521/23T3/topic/mips_functions/code/two_powerful.c"
+    )
+    # dest_folder = "C:/Users/15617/Documents/92_MyGithub/CSAPP/MIPS_demo/data"  # Replace with your desired folder path
+    dest_folder = os.path.dirname(os.path.realpath(__file__))
 
-# Example usage
-url = (
-    "https://cgi.cse.unsw.edu.au/~cs1521/23T3/topic/mips_functions/code/two_powerful.c"
-)
-# dest_folder = "C:/Users/15617/Documents/92_MyGithub/CSAPP/MIPS_demo/data"  # Replace with your desired folder path
-dest_folder = os.path.dirname(os.path.realpath(__file__))
+    download_file(url, dest_folder)
 
-download_file(url, dest_folder)
+    if url[-1] == "c":
+        url = url[:-1] + "s"
+    else:
+        url = url[:-1] + "c"
 
-if url[-1] == "c":
-    url = url[:-1] + "s"
-else:
-    url = url[:-1] + "c"
-
-download_file(url, dest_folder)
+    download_file(url, dest_folder)

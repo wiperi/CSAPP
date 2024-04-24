@@ -1,5 +1,8 @@
+from operator import imod
 import requests
 from bs4 import BeautifulSoup
+import os
+from py_download import download_file
 
 
 def extract_c_urls(url):
@@ -33,13 +36,22 @@ def extract_c_urls(url):
         return []
 
 
-# Example usage
-url = "https://cgi.cse.unsw.edu.au/~cs1521/23T3/topic/mips_data/code/"  # Replace with the actual URL
-c_urls = extract_c_urls(url)
+if __name__ == "__main__":
+    # Example usage
+    url = "https://cgi.cse.unsw.edu.au/~cs1521/23T3/topic/files/code/"  # Replace with the actual URL
+    c_urls = extract_c_urls(url)
 
-if c_urls:
-    print("Extracted URLs ending with .c:")
-    for url in c_urls:
-        print(url)
-else:
-    print("No URLs ending with .c found on the webpage.")
+    if c_urls:
+        print("Extracted URLs ending with .c:")
+        for url in c_urls:
+            print(url)
+            
+        user_input = input("Enter 'y' to start download: ")
+        if user_input.lower() == 'y':
+            for url in c_urls:
+                # Download the file
+                download_file(url, "C:/Users/15617/Documents/92_MyGithub/CSAPP/ppt_file")
+        else:
+            print("Download cancelled by user.")
+    else:
+        print("No URLs ending with .c found on the webpage.")
