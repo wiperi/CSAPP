@@ -99,6 +99,7 @@ uint32_t float_2048(uint32_t f) {
         if (fl.exponent + 11 < 256) {
             // fl.exp + 11 not overflow
             fl.exponent += 11;
+            f &= ~(0xff << EXPONENT_LOW_BIT);
             f |= (fl.exponent << EXPONENT_LOW_BIT);
             return f;
         } else {
