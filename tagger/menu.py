@@ -1,5 +1,8 @@
 import json
 import os
+from file import File
+from tag import Tag
+
 
 def build_json():
     # Step 1: Create an empty JSON file in the current working directory
@@ -28,6 +31,18 @@ def build_json():
         print(f"{num} items has been created in the JSON file.")
 
 
+def read_json():
+    with open("tagger\\data.json", "r") as json_file:
+        data = json.load(json_file)
+
+    # Print the data in the specified format
+    for file_name, tags in data.items():
+        tags_list = [tag.strip() for tag in tags.split(",")]
+        print(f"{file_name}: {tags}")
+        print(tags_list)
+        
+
+
 if __name__ == "__main__":
     while True:
         command = input("Enter a command: ")
@@ -54,3 +69,5 @@ if __name__ == "__main__":
             pass
         elif command == "build json":
             build_json()
+        elif command == "read json":
+            read_json()
