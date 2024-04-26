@@ -22,9 +22,9 @@ int main(int argc, char* argv[]) {
     int i = 0;
     while ((ch = fgetc(file)) != EOF) {
         if (isprint(ch)) {
-            printf("byte    %6d:  %3d 0x%x '%c'\n", i, ch, ch, ch);
+            printf("byte %4d: %3d 0x%2.2x '%c'\n", i, ch, ch, ch);
         } else {
-            printf("byte    %d:  %d 0x%x     \n", i, ch, ch);
+            printf("byte %4d: %3d 0x%2.2x     \n", i, ch, ch);
         }
         i++;
     }
