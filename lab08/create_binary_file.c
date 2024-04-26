@@ -27,14 +27,7 @@ int main(int argc, char* argv[]) {
         }
 
         fputc(num, file);
-
-        // if (isprint(num)) {
-        //     printf("byte %4d: %3d 0x%2.2x '%c'\n", i, num, num, num);
-        // } else {
-        //     printf("byte %4d: %3d 0x%2.2x     \n", i, num, num);
-        // }
     }
-
     fclose(file);
     
     return 0;
