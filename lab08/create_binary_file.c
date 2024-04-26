@@ -6,7 +6,7 @@
 int main(int argc, char* argv[]) {
 
     if (argc < 2) {
-        fprintf(stderr, "Usage: %s <file name> <number1> <number2>...\n");
+        fprintf(stderr, "Usage: %s <file name> <number1> <number2>...\n", argv[0]);
         exit(1);
     }
 
