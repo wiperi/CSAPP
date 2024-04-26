@@ -19,4 +19,5 @@ int main(int argc, char *argv[]) {
     for (int i = start; i <= end; i++) {
         fprintf(new_file, "%d\n", i);
     }
+    fclose(new_file);
 }
