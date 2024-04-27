@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
     // read the next byte
     int num_len = fgetc(file) - '0';
     if (num_len < 1 || num_len > 8) {
-        fprintf(stderr, "Invalid number of integers. Only 0..8 allowed.\n");
+        fprintf(stderr, "Invalid record length.\n");
         exit(1);
     }
 
@@ -47,7 +47,8 @@ int main(int argc, char* argv[]) {
         for (int i = 0; i < num_len; i++) {
             ch = fgetc(file);
             if (ch == EOF) {
-                return 1;
+                fprintf(stderr, "Failed to read record.\n");
+                exit(1);
             }
             res |= ch << (i * 8);
         }
