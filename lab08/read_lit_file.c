@@ -43,15 +43,17 @@ int main(int argc, char* argv[]) {
 
     // read integers
     uint64_t res = 0;
-    while (1) {
-        for (int i = 0; i < num_len; i++) {
-            ch = fgetc(file);
-            if (ch == EOF) {
-                fprintf(stderr, "Failed to read record.\n");
-                exit(1);
-            }
-            res |= ch << (i * 8);
+    for (int i = 0; i < num_len; i++) {
+        ch = fgetc(file);
+        if (ch == EOF) {
+            fprintf(stderr, "Failed to read record.\n");
+            exit(1);
         }
-        printf("%li\n", res);
+        res |= ch << (i * 8);
     }
+    printf("%li\n", res);
+
+    fclose(file);
+
+    return 0;
 }
