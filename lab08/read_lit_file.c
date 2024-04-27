@@ -1,4 +1,5 @@
 #include <ctype.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,7 +11,7 @@ int main(int argc, char* argv[]) {
         exit(1);
     }
 
-    FILE* file = open(argv[1]);
+    FILE* file = fopen(argv[1], "r");
     if (file == NULL) {
         fprintf(stderr, "Open file failed.\n");
         exit(1);
@@ -22,7 +23,7 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < 3; i++) {
         ch = fgetc(file);
         if (ch == EOF) {
-            fprintf(stderr, "File size too small for header.\n");
+            fprintf(stderr, "Fail to read magic.\n");
             exit(1);
         }
 
@@ -33,19 +34,23 @@ int main(int argc, char* argv[]) {
         exit(1);
     }
 
-
     // read the next byte
-    int n_bytes = atoi(fgetc(file));
-    if (n_bytes < 1 || n_bytes > 8) {
+    int num_len = fgetc(file) - '0';
+    if (num_len < 1 || num_len > 8) {
         fprintf(stderr, "Invalid number of integers. Only 0..8 allowed.\n");
         exit(1);
     }
-    
+
     // read integers
-    while ((ch = fgetc(file)) != EOF) {
-        printf("%d\n", ch);
+    uint64_t res = 0;
+    while (1) {
+        for (int i = 0; i < num_len; i++) {
+            ch = fgetc(file);
+            if (ch == EOF) {
+                return 1;
+            }
+            res |= ch << (i * 8);
+        }
+        printf("%li\n", res);
     }
-
-
-    
 }
