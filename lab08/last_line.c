@@ -15,16 +15,18 @@ int main(int argc, char* argv[]) {
 
     int ch;
     int bias = 0;
-    int cursor;
+    int start = 0;
     while (1) {
         if (fseek(file, -1 * bias, SEEK_END) == -1) {
-            perror(argv[1]);
-            exit(1);
+            fseek(file, -1 * --bias, SEEK_END);
+            break;
         }
 
         ch = fgetc(file);
-        if (bias > 0 && !isprint(ch) && ch == '\n') {
-            // find the init of target line
+        if (isprint(ch)) {
+            start = 1;
+        }
+        if (start && !isprint(ch)) {
             break;
         }
 
