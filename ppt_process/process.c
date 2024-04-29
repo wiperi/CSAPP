@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int main(int argc, char *argv[]) {
-    pid_t p = getpid();
+int main(int argc, char* argv[]) {
 
-    pid_t pp = getppid();
+    printf("%d\n", getpid());
 
-    printf("%d\n", p);
+    fork();
+
+    for (int i = 0; i < 100; i++) {
+        printf("%d: %d\n", getpid(), i);
+    }
 }
