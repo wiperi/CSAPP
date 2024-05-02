@@ -11,7 +11,7 @@ int main(int argc, char* argv[]) {
 
     // get the path of diary
     char* path = getenv("HOME");
-    path = strcat(path, "/diary");
+    path = strcat(path, "/.diary");
 
     // printf("%s\n", path);    
 
