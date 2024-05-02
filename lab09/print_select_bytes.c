@@ -24,9 +24,9 @@ int main(int argc, char* argv[]) {
         int ch = fgetc(file);
 
         if (isprint(ch)) {
-            printf("%d - %02x - '%c'\n", ch, ch, ch);
+            printf("%d - 0x%02X - '%c'\n", ch, ch, ch);
         } else {
-            printf("%d - %02x\n", ch, ch);
+            printf("%d - 0x%02X\n", ch, ch);
         }
     }
 }
