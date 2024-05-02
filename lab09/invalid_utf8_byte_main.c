@@ -44,15 +44,15 @@ int main(void) {
 }
 
 int get_utf_len(unsigned int ch) {
-    int i = 7;
+    int k = 7;
     int len = 0;
-    while (i >= 0) {
-        if (((ch >> i) & 1) == 1) {
+    while (k >= 0) {
+        if (((ch >> k) & 1) == 1) {
             len++;
         } else {
             return len;
         }
-        i--;
+        k--;
     }
 }
 
@@ -69,7 +69,16 @@ int invalid_utf8_byte(char* utf8_string) {
             continue;
         } else {
             // 1xxx = there are followings
-            int len = get_utf_len(ch);
+            int k = 7;
+            int len = 0;
+            while (k >= 0) {
+                if (((ch >> k) & 1) == 1) {
+                    len++;
+                } else {
+                    break;
+                }
+                k--;
+            }
 
             // check successive byte
             for (int j = 0; j < len; j++) {

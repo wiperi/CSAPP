@@ -16,7 +16,16 @@ int invalid_utf8_byte(char* utf8_string) {
             continue;
         } else {
             // 1xxx = there are followings
-            int len = get_utf_len(ch);
+            int k = 7;
+            int len = 0;
+            while (k >= 0) {
+                if (((ch >> k) & 1) == 1) {
+                    len++;
+                } else {
+                    break;
+                }
+                k--;
+            }
 
             // check successive byte
             for (int j = 0; j < len; j++) {
