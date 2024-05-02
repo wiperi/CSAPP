@@ -20,13 +20,13 @@ int main(int argc, char* argv[]) {
 
         int pos = atoi(argv[i]);
         fseek(file, pos, SEEK_SET);
-        
+
         int ch = fgetc(file);
 
         if (isprint(ch)) {
-            printf("%d - %2.2x - '%c'\n", ch, ch, ch);
+            printf("%d - %02x - '%c'\n", ch, ch, ch);
         } else {
-            printf("%d - %2.2x\n", ch, ch);
+            printf("%d - %02x\n", ch, ch);
         }
     }
 }
