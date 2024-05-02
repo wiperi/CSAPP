@@ -7,9 +7,11 @@ int invalid_utf8_byte(char* utf8_string) {
 
     // TODO: implement this function
 
+    unsigned int ch;
+
     for (int i = 0; utf8_string[i] != '\0'; i++) {
 
-        unsigned int ch = utf8_string[i];
+        ch = utf8_string[i];
 
         if ((ch >> 7) == 0) {
             // 0xxx = good
@@ -34,7 +36,7 @@ int invalid_utf8_byte(char* utf8_string) {
                 // check successive byte
                 i++;
                 ch = utf8_string[i];
-                printf("%02x\n", ch);
+                // printf("%02x\n", ch);
 
                 if ((ch >> 6) == 0b10) {
                     continue;
