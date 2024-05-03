@@ -1,8 +1,8 @@
+#include <grp.h>
+#include <pwd.h>
 #include <stdio.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <pwd.h>
-#include <grp.h>
 #include <time.h>
 
 void print_file_permissions(struct stat s) {
@@ -70,7 +70,13 @@ int main(int argc, char* argv[], char* envp[]) {
         printf(" %s", getpwuid(st.st_uid)->pw_name); // 文件所有者用户名
         printf(" %s", getgrgid(st.st_gid)->gr_name); // 文件所属组名
         printf(" %ld", (long)st.st_size);            // 文件大小
-        printf(" %s", ctime(&st.st_mtime));          // 最后修改时间
-        printf(" %s\n", path);                       // 文件名
+
+        char date_string[80];
+        strftime(date_string, sizeof(date_string), "%b %e %H:%M", localtime(&st.st_mtime));
+        printf(" %s", date_string);
+        // printf(" %s", ctime(&st.st_mtime)); // 最后修改时间
+
+
+        printf(" %s\n", path);              // 文件名
     }
 }
