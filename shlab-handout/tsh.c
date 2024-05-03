@@ -162,6 +162,57 @@ int main(int argc, char** argv) {
  * when we type ctrl-c (ctrl-z) at the keyboard.
  */
 void eval(char* cmdline) {
+
+    char* tokens[MAXARGS];
+
+    int bg = parseline(cmdline, tokens);
+
+    // handle built-in command?
+    if (strcmp(tokens[0], "quit") == 0) {
+        exit(0);
+    }
+    if (strcmp(tokens[0], "jobs") == 0) {
+        int len = maxjid(jobs);
+
+        if (len != 0) {
+            for (int i = 0; i <= len; i++) {
+                struct job_t job = jobs[i];
+                printf("[%d]\n", job.jid);
+            }
+        }
+    }
+    if (strcmp(tokens[0], "bg") == 0) {
+        exit(0);
+    }
+    if (strcmp(tokens[0], "fg") == 0) {
+        exit(0);
+    }
+
+    // handle not built-in command
+    if (!bg) {
+        // foreground job
+
+        pid_t pid;
+
+        // block sigchild
+        sigset_t mask, prev_mask;
+        sigemptyset(&mask);
+        sigaddset(&mask, SIGCHLD);
+        sigprocmask(SIG_BLOCK, &mask, &prev_mask);
+
+        if ((pid = fork()) == 0) {
+            execv(tokens[0], tokens);
+        }
+        addjob(jobs, pid, ST, cmdline);
+        
+        // unblock sigchild
+        sigprocmask(SIG_SETMASK, &prev_mask, NULL);
+
+        // wait for child' end
+        waitfg(pid);
+        
+    }
+
     return;
 }
 
@@ -238,6 +289,15 @@ void do_bgfg(char** argv) {
  * waitfg - Block until process pid is no longer the foreground process
  */
 void waitfg(pid_t pid) {
+
+    if (getjobpid(jobs, pid) == NULL) {
+        return;
+    }
+
+    while (fgpid(jobs) == pid) {
+        continue;
+    }
+
     return;
 }
 
@@ -267,7 +327,7 @@ void sigchld_handler(int sig) {
             deletejob(jobs, pid);
         } else if (WIFSTOPPED(stat)) {
             // stopped
-            getjobpid(jobs, pid)->state = ST;    
+            getjobpid(jobs, pid)->state = ST;
         }
     }
 
