@@ -1,11 +1,18 @@
 #include "csapp.h"
 /* $begin signal1 */
-/* WARNING: This code is buggy! */
+
+/**
+ * Introduction:
+ * 
+ * This program demonstrates the use of signal handlers to reap zombie children.
+ * Every time a SIGCHLD signal is recieved, the handler will try to reap as many child as possible.
+ */
 
 void handler1(int sig) {
     int olderrno = errno;
 
-    // Wrong
+    // Wrong, reap on each time will lost some child.
+    // because some signal will be lost since signal don't queue
     if ((waitpid(-1, NULL, 0)) < 0)
         sio_error("waitpid error");
     Sio_puts("Handler reaped child\n");
@@ -17,6 +24,7 @@ void handler2(int sig) {
     int olderrno = errno;
 
     // Right
+    // Reap as many as possible
     while (waitpid(-1, NULL, 0) > 0) {
         Sio_puts("Handler reaped child\n");
     }
