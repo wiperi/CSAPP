@@ -1,0 +1,29 @@
+/* $begin restart */
+#include "/home/ilwin/Documents/CSAPP/csapp.h"
+
+/**
+ * Introduction:
+ * 
+ * use signal to triger non-local jump.
+ */
+
+sigjmp_buf buf;
+
+void handler(int sig) {
+    siglongjmp(buf, 1);
+}
+
+int main() {
+    if (sigsetjmp(buf, 1) == 0) {
+        Signal(SIGINT, handler);
+        Sio_puts("starting\n");
+    } else
+        Sio_puts("restarting\n");
+
+    while (1) {
+        Sleep(1);
+        Sio_puts("processing...\n");
+    }
+    exit(0); /* Control never reaches here */
+}
+/* $end restart */
