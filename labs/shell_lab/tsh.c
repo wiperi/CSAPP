@@ -3,6 +3,8 @@
  * 
  * <Put your name and login ID here>
  */
+#define __USE_POSIX
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
