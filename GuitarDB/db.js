@@ -55,4 +55,11 @@ class FretBoard {
         }
         return [newNote, octave];
     }
+
+    a(note, octave, gap) {
+        let index = notes.indexOf(note);
+        let newNote = notes[(index + gap) % notes.length];
+        let newOctave = octave += Math.floor((index + gap) / notes.length);
+        return [newNote, newOctave];
+    }
 }
