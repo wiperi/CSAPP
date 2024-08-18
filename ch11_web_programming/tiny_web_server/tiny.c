@@ -32,12 +32,19 @@ int main(int argc, char** argv) {
     listenfd = Open_listenfd(argv[1]);
     while (1) {
         clientlen = sizeof(clientaddr);
+
+        // Listening for request
         connfd = Accept(listenfd, (SA*) &clientaddr,
                         &clientlen); // line:netp:tiny:accept
+
+        // Connection established
         Getnameinfo((SA*) &clientaddr, clientlen, hostname, MAXLINE, port,
                     MAXLINE, 0);
         printf("Accepted connection from (%s, %s)\n", hostname, port);
+
+        // Handle transaction
         doit(connfd);  // line:netp:tiny:doit
+
         Close(connfd); // line:netp:tiny:close
     }
 }
@@ -69,13 +76,16 @@ void doit(int fd) {
 
     /* Parse URI from GET request */
     is_static = parse_uri(uri, filename, cgiargs); // line:netp:doit:staticcheck
+
+    // Check filename is valid
     if (stat(filename, &sbuf) < 0) { // line:netp:doit:beginnotfound
         clienterror(fd, filename, "404", "Not found",
                     "Tiny couldn't find this file");
         return;
     } // line:netp:doit:endnotfound
 
-    if (is_static) { /* Serve static content */
+    // Serve static or dynamic content
+    if (is_static) {
         if (!(S_ISREG(sbuf.st_mode)) ||
             !(S_IRUSR & sbuf.st_mode)) { // line:netp:doit:readable
             clienterror(fd, filename, "403", "Forbidden",
@@ -126,7 +136,7 @@ int parse_uri(char* uri, char* filename, char* cgiargs) {
         strcpy(filename, ".");             // line:netp:parseuri:beginconvert1
         strcat(filename, uri);             // line:netp:parseuri:endconvert1
         if (uri[strlen(uri) - 1] == '/')   // line:netp:parseuri:slashcheck
-            strcat(filename, "home.html"); // line:netp:parseuri:appenddefault
+            strcat(filename, "index.html"); // line:netp:parseuri:appenddefault
         return 1;
     } else { /* Dynamic content */ // line:netp:parseuri:isdynamic
         ptr = index(uri, '?');     // line:netp:parseuri:beginextract
